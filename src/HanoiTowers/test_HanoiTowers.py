@@ -34,9 +34,9 @@ class TestHanoiTowers(TestCase):
         moves = instance.run()
         self.assertEqual(moves, 63)
 
-    # def test_run_n_disk(self):
-    #     for x in range(1, 21):
-    #         instance = HanoiTowers(x)
-    #         moves = instance.run()
-    #         print(moves)
-    #         self.assertEqual(moves, pow(2, x) - 1)
+    def test_run_n_disk(self):
+        for x in range(1, 21):
+            instance = HanoiTowers(x)
+            moves = instance.run()
+            print(moves)
+            self.assertEqual(moves, pow(2, x) - 1)
