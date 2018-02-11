@@ -57,6 +57,10 @@ class TestDiceProject(TestCase):
         given_dices = [[3, 3, 3, 3, 3, 3], [6, 6, 2, 2, 2, 2], [4, 4, 4, 4, 0, 0], [5, 5, 5, 1, 1, 1]]
         self.assertEqual(-1, find_the_best_dice(given_dices))
 
+    def test_given_dices_there_is_not_a_best_because_all_are_equals(self):
+        given_dices = [[3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3]]
+        self.assertEqual(-1, find_the_best_dice(given_dices))
+
     def test_given_dices_there_is_madness(self):
         given_dices = [[3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [4, 3, 3, 3, 3, 3], [2, 3, 3, 3, 3, 3]]
         self.assertEqual(2, find_the_best_dice(given_dices))
@@ -64,3 +68,7 @@ class TestDiceProject(TestCase):
     def test_given_dices_the_strategy_is_first_pick_dice_1(self):
         given_dices = [[4, 4, 4, 4, 0, 0], [7, 7, 3, 3, 3, 3], [6, 6, 2, 2, 2, 2], [5, 5, 5, 1, 1, 1]]
         self.assertEqual({'choose_first': True, 'first_dice': 1}, compute_strategy(given_dices))
+
+    def test_given_dices_the_strategy_is_last_pick_and_map_optins(self):
+        given_dices = [[1, 1, 4, 6, 7, 8], [2, 2, 2, 6, 7, 7], [3, 3, 3, 5, 5, 8]]
+        self.assertEqual({'choose_first': False, 0: 1, 1: 2, 2: 0}, compute_strategy(given_dices))
