@@ -1,12 +1,12 @@
-def diophantine(a, b, c):
+def divide(a, b, n):
     assert a > 0 and b > 0
-    gcdv, p, q = xgcd(a, b)
+    if a > n:
+        gcdv, x, y = xgcd(a, n)
+    else:
+        gcdv, x, y = xgcd(n, a)
+    assert gcdv == 1
 
-    #c = a*p*t + b*q*t
-    #c = (a*p + b*q) * t
-    #t = c / (a*p + b*q)
-    i = c / (a*p + b*q)
-    return p*i, q*i
+    return (b * y) % n
 
 
 def xgcd(a, b):
