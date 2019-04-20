@@ -1,12 +1,11 @@
 import sys
 import threading
 
+sys.setrecursionlimit(10 ** 7)
+threading.stack_size(2 ** 27)
+
 
 class QuizUtils:
-    def __init__(self):
-        sys.setrecursionlimit(10 ** 7)
-        threading.stack_size(2 ** 27)
-
     @staticmethod
     def ConvertToInt(message_str):
         res = 0
@@ -53,8 +52,9 @@ class QuizUtils:
 
     @staticmethod
     def Decrypt(ciphertext, p, q, exponent):
-        # Substitute this implementation with your code from question 2 of the "RSA Quiz".
-        return QuizUtils.ConvertToStr(QuizUtils.PowMod(ciphertext, exponent, p * q))
+        mod = (p - 1) * (q - 1)
+        d = QuizUtils.InvertModulo(exponent, mod)
+        return QuizUtils.ConvertToStr(QuizUtils.PowMod(ciphertext, d, p * q))
 
     @staticmethod
     def Encrypt(message, modulo, exponent):
